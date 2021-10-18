@@ -152,3 +152,38 @@ Once you computed the λ dictionary, it becomes straightforward to do inference:
 </p>
 
 As you can see above, since 3.3 > 0 , we will classify the document to be positive. If we got a negative number we would have classified it to the negative class.
+
+
+## 7. Training Naïve Bayes
+
+To train your naïve Bayes classifier, you have to perform the following steps:
+
+1) Get or annotate a dataset with positive and negative tweets
+
+2) Preprocess the tweets: process_tweet(tweet) ➞ [w1, w2, w3, ...]:
+
+   * Lowercase
+
+   * Remove punctuation, urls, names
+
+   * Remove stop words
+
+   * Stemming
+
+   * Tokenize sentences
+
+3) Compute freq(w, class):
+
+    <p align="left">
+    <img width="500" src="./img/week2_12.png">
+    </p>
+
+4) Get P(w|pos), P(w|neg)  
+You can use the table above to compute the probabilities.
+
+5) Get λ(w)  
+$\lambda(w)=\log \frac{P(\mathrm{w} \mid \mathrm{pos})}{P(\mathrm{w} \mid \mathrm{neg})}$  
+    
+1) Compute $logprior = \log(P(pos) / P(neg))$  
+$\text { logprior }=\log \frac{D_{p o s}}{D_{n e g}}$    
+where $D_{pos}$ and $D_{neg}$ correspond to the number of positive and negative documents respectively.
