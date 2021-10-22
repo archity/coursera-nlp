@@ -86,7 +86,7 @@ A score greater than 1 indicates that the class is positive, otherwise it is neg
 
 We usually compute the probability of a word given a class as follows:
 
-$P\left(\mathrm{w}_{\mathrm{i}} \mid \text { class }\right)=\frac{\text { freq }\left(\mathrm{w}_{\mathrm{i}}, \text { class }\right)}{\mathrm{N}_{\text {class }}} \quad \text { class } \in\{\text { Positive, Negative }\} $
+$P\left(\mathrm{w}_{\mathrm{i}} \mid \text { class }\right)=\frac{\text { freq }\left(\mathrm{w}_{\mathrm{i}}, \text { class }\right)}{\mathrm{N}_{\text {class }}} \quad \text { class } \in\{\text { Positive, Negative }\}$
  
 ```
 P(w_i​ ∣ class ) = freq (w_i, class ) / N_class  
@@ -96,7 +96,7 @@ class ∈ { Positive, Negative }
 
 However, if a word does not appear in the training, then it automatically gets a probability of 0, to fix this we add smoothing as follows
 
-$P\left(\mathrm{w}_{\mathrm{i}} \mid \mathrm{class}\right)=\frac{\operatorname{freq}\left(\mathrm{w}_{\mathrm{i}}, \text { class }\right)+1}{\left(\mathrm{N}_{\text {class }}+\mathrm{V}\right)} $
+$P\left(\mathrm{w}_{\mathrm{i}} \mid \mathrm{class}\right)=\frac{\operatorname{freq}\left(\mathrm{w}_{\mathrm{i}}, \text { class }\right)+1}{\left(\mathrm{N}_{\text {class }}+\mathrm{V}\right)}$
 
 ```
 P(w_i ∣ class) = freq(w_i, class) + 1 / (N_class + V)
@@ -120,7 +120,7 @@ To compute the log likelihood, we need to get the ratios and use them to compute
 To do inference, you can compute the following: 
 
 
-$\frac{P(p o s)}{P(n e g)}  \prod_{i=1}^{m} \frac{P\left(w_{i} \mid p o s\right)}{P\left(w_{i} \mid n e g\right)}  >1 $
+$\frac{P(p o s)}{P(n e g)}  \prod_{i=1}^{m} \frac{P\left(w_{i} \mid p o s\right)}{P\left(w_{i} \mid n e g\right)}  >1$
 
 ```
 P(pos) / P(neg) ∏ i=1 to m [ P(w_i ∣ pos) / P(w_i ∣ neg) ] > 1
@@ -187,3 +187,63 @@ $\lambda(w)=\log \frac{P(\mathrm{w} \mid \mathrm{pos})}{P(\mathrm{w} \mid \mathr
 1) Compute $logprior = \log(P(pos) / P(neg))$  
 $\text { logprior }=\log \frac{D_{p o s}}{D_{n e g}}$    
 where $D_{pos}$ and $D_{neg}$ correspond to the number of positive and negative documents respectively.
+
+
+## 8. Testing Naïve Bayes
+
+<p align="left">
+<img width="500" src="./img/week2_13.png">
+</p>
+
+The example above shows how you can make a prediction given your λ dictionary. In this example the `logprior` is 0 because we have the same amount of positive and negative documents (i.e. `log(1) = 0`). 
+
+
+## 9. Applications of Naïve Bayes
+
+There are many applications of naive Bayes including: 
+
+* Author identification
+* Spam filtering 
+* Information retrieval 
+* Word disambiguation 
+
+This method is usually used as a simple baseline. It's also really fast.
+
+
+## 10. Naïve Bayes Assumptions
+
+Naïve Bayes makes the independence assumption and is affected by the word frequencies in the corpus. For example, if you had the following:
+
+<p align="left">
+<img width="500" src="./img/week2_14.png">
+</p>
+
+In the first image, you can see the word sunny and hot tend to depend on each other and are correlated to a certain extent with the word "desert". Naive Bayes assumes independence throughout. Furthermore, if you were to fill in the sentence on the right, this naive model will assign equal weight to the words "spring, summer, fall, winter". 
+
+<p align="left">
+<img width="500" src="./img/week2_15.png">
+</p>
+
+On Twitter, there are usually more positive tweets than negative ones. However, some "clean" datasets you may find are artificially balanced to have to the same amount of positive and negative tweets. Just keep in mind, that in the real world, the data could be much noisier. 
+
+
+## 11. Error Analysis
+
+There are several mistakes that could cause you to misclassify an example or a tweet. For example, 
+
+* Removing punctuation
+* Removing words
+
+<p align="left">
+<img width="500" src="./img/week2_16.png">
+</p>
+
+* Word order
+
+<p align="left">
+<img width="500" src="./img/week2_17.png">
+</p>
+
+* Adversarial attacks
+
+These include sarcasm, irony, euphemisms.
