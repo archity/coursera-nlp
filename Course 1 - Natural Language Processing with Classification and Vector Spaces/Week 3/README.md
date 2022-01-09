@@ -12,7 +12,7 @@ Vector spaces are fundamental in many applications in NLP. If you were to repres
 <img width="500" src="./img/week3_2.png">
 </p>
 
-The famous quote by Firth says, "You shall know a word by the company it keeps". When learning these vectors, you usually make use of the neighboring words to extract meaning and information about the center word. If you were to cluster these vectors together, as you will see later in this specialization, you will see that adjectives, nouns, verbs, etc. tend to be near one another. Another cool fact, is that synonyms and antonyms are also very close to one another. This is because you can easily interchange them in a sentence and they tend to have similar neighboring words!
+The famous quote by Firth says, "You shall know a word by the company it keeps". When learning these vectors, you usually make use of the neighbouring words to extract meaning and information about the centre word. If you were to cluster these vectors together, as you will see later in this specialization, you will see that adjectives, nouns, verbs, etc. tend to be near one another. Another cool fact, is that synonyms and antonyms are also very close to one another. This is because you can easily interchange them in a sentence and they tend to have similar neighbouring words!
 
 
 ## 2. Word by Word and Word by Doc
@@ -40,4 +40,25 @@ You can represent the entertainment category, as a vector $v = [500, 7000]$. You
 
 <p align="left">
 <img width="500" src="./img/week3_5.png">
+</p>
+
+
+## 3. Euclidean Distance
+
+Let us assume that you want to compute the distance between two points: $A, B$. To do so, you can use the euclidean distance defined as:
+
+$d(B, A) = \sqrt{(B_1 - A_1)^2 + (B_2 - A_2)^2}$
+
+<p align="left">
+<img width="500" src="./img/week3_6.png">
+</p>
+
+You can generalize finding the distance between the two points $(A,B)$ to the distance between an nn dimensional vector as follows: 
+
+$d(\vec{v}, \vec{w}) = \sqrt{\sum_{i=1}^{n}{(v_i - w_i)^2}}$
+
+Here is an example where I calculate the distance between 2 vectors $(n = 3)$.
+
+<p align="left">
+<img width="500" src="./img/week3_7.png">
 </p>
